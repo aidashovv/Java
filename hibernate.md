@@ -3,6 +3,7 @@
 # Hibernate
   - [Что такое _Hibernate_?](#что-такое-hibernate)
   - [Какие основные сущности в _Hibernate_?](#какие-основные-сущности-в-hibernate)
+  - [Как правильно настроить hibernate.properties?](#как-правильно-настроить-properties)
 
 ## Что такое _Hibernate_?
 __Hibernate__ - ORM (Object-Relational Mapping), которая автоматизирует отображение Java объектов в строки в таблице реаляционной БД. 
@@ -34,5 +35,27 @@ __Зачем нам помещать несколько операций в 1 т
 __Например__: Мы хотим запретить доступ к таблице, пока БД обрабатывает наш запрос на изменение таблицы. Или мы хотим ограничить доступ дргуих сессий, потоков на обработку той сущности, которая в текущий момент изменяется.
 
 Данная проблема называется __Race Condition__ и для ее решения можно синхронизировать потоки (обычно с помощью блокировок). Будут использоваться __Тransactional Isolation Levels__ (уровни изоляции транзакций).
+
+[к оглавлению](#Hibernate)
+
+## Как правильно настроить hibernate.properties?
+```java
+// --- Data Source configuration ---
+
+// hibernate.driver_class - класс jdbc, который мы указываем для jdbc driver
+hibernate.driver_class=org.postgresql.Driver
+hibernate.connection.url=jdbc:postgresql://localhost:5432/postgres
+hibernate.connection.username=postgres
+hibernate.connection.password=3003
+
+// --- Hibernate configuration ---
+
+// Указываем диалект (определенную реаляционную БД)
+hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+// Позволяет выводить на консоль сгенерированные hibernate sql-запросы
+hibernate.show_sql=true
+// ??? (пока что)
+hibernate.current_session_context_class=thread
+```
 
 [к оглавлению](#Hibernate)
