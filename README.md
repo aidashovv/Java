@@ -1,3 +1,3 @@
 # Java info
 
-+ [Hibernate](#hibernate)
++ [Hibernate](#hibernate.md)
