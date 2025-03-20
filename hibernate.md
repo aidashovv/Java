@@ -7,7 +7,7 @@
 ## Что такое _Hibernate_?
 __Hibernate__ - ORM (Object-Relational Mapping), которая автоматизирует отображение Java объектов в строки в таблице реаляционной БД. 
 
-`Под капотом у него _JDBC API_`
+`Под капотом у него JDBC API`
 
 [к оглавлению](#Hibernate)
 
