@@ -2,18 +2,18 @@
 
 # Hibernate
   - [Что такое _Hibernate_?](#что-такое-hibernate)
-  - [Какие основные сущности в _Hibernate_?](#какие-основные-сущности-в-hibernate)
-  - [Как правильно настроить _hibernate.properties_?](#как-правильно-настроить-properties)
-  - [Какие аннотации необходимы для работы с Hibernate?](#hiberanate-аннотация)
+  - [Какие основные сущности в Hibernate?](#какие-основные-сущности-в-hibernate)
+  - [Как правильно настроить _hibernate.properties_?](#как-правильно-настроить-hibernate-properties)
+  - [Какие аннотации необходимы для работы с Hibernate?](#какие-аннотации-необходимы-для-работы-с-hibernate)
 
-## Что такое _Hibernate_?
+## Что такое Hibernate?
 __Hibernate__ - ORM (Object-Relational Mapping), которая автоматизирует отображение Java объектов в строки в таблице реаляционной БД. 
 
 `Под капотом у него JDBC API`
 
 [к оглавлению](#Hibernate)
 
-## Какие основные сущности в _Hibernate_?
+## Какие основные сущности в Hibernate?
 + __Session__- объект для взаимодействия в Hibernate. Когда мы хотим произвести какие-либо действия с БД через  Hibernate - получаем _сессию_. А объект __Session__ получаем из объекта __SessionFactory__ (паттерн Фабрика):
 ```java
 SessionFactory sessionFactory = configuration.BuildSessionFactory();
@@ -72,4 +72,8 @@ hibernate.current_session_context_class=thread
 + @Id - указывает на поле, которое является первичным ключом в таблице.
 
 ```java
+
 ```
+
+[к оглавлению](#Hibernate)
+
