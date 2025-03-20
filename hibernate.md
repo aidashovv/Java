@@ -1,4 +1,4 @@
-[Java info](README.md)
+[Java](README.md)
 
 # Hibernate
   - [Что такое _Hibernate_?](#что-такое-hibernate)
