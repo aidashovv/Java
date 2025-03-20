@@ -3,7 +3,7 @@
 # Hibernate
   - [Что такое _Hibernate_?](#что-такое-hibernate)
   - [Какие основные сущности в Hibernate?](#какие-основные-сущности-в-hibernate)
-  - [Как правильно настроить _hibernate.properties_?](#как-правильно-настроить-hibernate-properties)
+  - [Как правильно настроить _hibernate.properties_?](#как-правильно-настроить-hibernate.properties)
   - [Какие аннотации необходимы для работы с Hibernate?](#какие-аннотации-необходимы-для-работы-с-hibernate)
 
 ## Что такое Hibernate?
