@@ -1,6 +1,6 @@
 [Java info](README.md)
 
-# Hibernate
+#Hibernate
   - [Что такое _Hibernate_?](#что-такое-hibernate)
   - [Какие основные сущности в _Hibernate_?](#какие-основные-сущности-в-hibernate)
 
