@@ -15,7 +15,7 @@ __Hibernate__ - ORM (Object-Relational Mapping), которая автомати
 [к оглавлению](#Hibernate)
 
 ## Какие основные сущности в Hibernate?
-+ __Session__- объект для взаимодействия в Hibernate. Когда мы хотим произвести какие-либо действия с БД через  Hibernate - получаем _сессию_. А объект __Session__ получаем из объекта __SessionFactory__ (паттерн Фабрика):
++ __Session__ - объект для взаимодействия в Hibernate. Когда мы хотим произвести какие-либо действия с БД через  Hibernate - получаем _сессию_. А объект __Session__ получаем из объекта __SessionFactory__ (паттерн Фабрика):
 ```java
 SessionFactory sessionFactory = configuration.BuildSessionFactory();
 Session session = sessionFactory.getCurrentSession();
