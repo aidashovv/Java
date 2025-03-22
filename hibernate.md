@@ -5,7 +5,7 @@
   - [Какие основные сущности в Hibernate?](#какие-основные-сущности-в-hibernate)
   - [Как правильно настроить файл _properties_?](#как-правильно-настроить-файл-properties)
   - [Какие аннотации необходимы для работы с Hibernate?](#какие-аннотации-необходимы-для-работы-с-hibernate)
-  - [Полезные аннтоации](#полезные-аннотации)
+  - [Как генерировать _id_?](#как-генерировать-id)
 
 ## Что такое Hibernate?
 __Hibernate__ - ORM (Object-Relational Mapping), которая автоматизирует отображение Java объектов в строки в таблице реаляционной БД. 
@@ -90,7 +90,7 @@ public class Friend {
 
 [к оглавлению](#Hibernate)
 
-## Полезные аннотации
+## Как генерировать _id_?
 + __@GeneratedValue(strategy = GenerationType.IDENTITY)__ - говорит Hibernate, что поле класса генерируется на стороне PostgreSQL по стратегии "IDENTITY" и в Java мы вообще об этом не думаем.
 
 "IDENTITY" стратегия удобна тем, что PostgreSQL автоматически получает новые значение из sequence:
@@ -100,34 +100,5 @@ CREATE TABLE users (
     ...
 )
 ```
-
-Есть множество стратегий, к примеру, __"SEQUENCE"__, где нам придется вручную обращаться к sequence, получать следующее значение и это значение нужно будет вручную вставлять в качестве id в таблицу:
-```java
-@Entity
-@Table(name = "bank_accounts")
-public class BankAccount {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-    generator = "выдуманное_название_для_java")
-    @SequenceGenerator(name = "выдуманное_название_для_java", \\ указываем конкретный sequence для генерации id
-    sequenceName = "название_из_бд", allocationSize = n)
-    \\ то n, на которое будет * следующее значение из sequence
-    \\ обычно ставят 1, для id: 1, 2, 3 и так далее
-    private Integer id;
-```
-
-
-
-
-
-
-
-
-
-
-
-
 
 [к оглавлению](#Hibernate)
