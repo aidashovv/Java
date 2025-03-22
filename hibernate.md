@@ -5,6 +5,7 @@
   - [Какие основные сущности в Hibernate?](#какие-основные-сущности-в-hibernate)
   - [Как правильно настроить файл _properties_?](#как-правильно-настроить-файл-properties)
   - [Какие аннотации необходимы для работы с Hibernate?](#какие-аннотации-необходимы-для-работы-с-hibernate)
+  - [Полезные аннтоации](#полезные-аннотации)
 
 ## Что такое Hibernate?
 __Hibernate__ - ORM (Object-Relational Mapping), которая автоматизирует отображение Java объектов в строки в таблице реаляционной БД. 
@@ -53,8 +54,6 @@ hibernate.connection.password=0000
 
 // Указываем диалект (определенную реаляционную БД)
 hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-// Позволяет выводить на консоль сгенерированные hibernate sql-запросы
-hibernate.show_sql=true
 // ??? (пока что)
 hibernate.current_session_context_class=thread
 ```
@@ -69,8 +68,28 @@ hibernate.current_session_context_class=thread
 + @Id - указывает на поле, которое является первичным ключом в таблице.
  
 ```java
+import javax.persistence.*;
 
+@Entity
+@Table(name = "friends")
+public class Friend {
+
+    @Id
+    @Column(name = "friend_login")
+    private String friendLogin;
+
+    public Friend() {}
+
+    public Friend(String inputFriendLogin) {
+        friendLogin = inputFriendLogin;
+    }
+
+    ...
+}
 ```
 
 [к оглавлению](#Hibernate)
 
+## Полезные аннотации
+
+[к оглавлению](#Hibernate)
