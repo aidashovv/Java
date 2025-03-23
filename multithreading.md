@@ -61,7 +61,7 @@ class Runner implements Runnable {
 [к оглавлению](#Многопоточноть)
 
 ## Ключевое слово volatile
-Применяется в том случае, если один из потоков читает из переменной, а другой записывает, чтобы избежать возможной проблемы с Cache Coherency.
+Применяется в том случае, если один из потоков читает из переменной (myThread), а другой записывает (main), чтобы избежать возможной проблемы с Cache Coherency.
 ```java
 public class App
 {
@@ -78,7 +78,7 @@ public class App
 }
 
 class MyThread extends Thread {
-    private volatile boolean running = true; \\ volatile говорит о том, что 'running' не кэшируется в кэш ядра
+    private volatile boolean running = true; // volatile говорит о том, что 'running' не кэшируется в кэш ядра
 
     @Override
     public void run() {
