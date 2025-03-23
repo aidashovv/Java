@@ -78,7 +78,7 @@ public class App
 }
 
 class MyThread extends Thread {
-    private volatile boolean running = true;
+    private volatile boolean running = true; \\ volatile говорит о том, что 'running' не кэшируется в кэш ядра
 
     @Override
     public void run() {
