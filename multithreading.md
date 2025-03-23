@@ -3,6 +3,7 @@
 # Многопоточноть
   - [Что такое многопоточность?](#что-такое-многопоточность)
   - [Как открыть новый поток?](#как-открыть-новый-поток)
+  - [Ключевое слово volatile](#ключевое-словое-volatile)
 
 ## Что такое _многопоточность_?
 __Многопоточность__ - механизм, который помогает выполнять код || с другим. 
@@ -23,7 +24,7 @@ public class App {
         myThread1.start();
 
         MyThread myThread2 = new MyThread(); // запускаем 2 поток
-        myThread1.start();
+        myThread2.start();
     }
 }
 
@@ -56,5 +57,47 @@ class Runner implements Runnable {
 }
 ```
 ``В данных случаях вывод - спонтанный, так как нет никакой синхронизации и каждый из потоков борется за процессорное время.``
+
+[к оглавлению](#Многопоточноть)
+
+## Ключевое слово volatile
+Применяется в том случае, если один из потоков читает из переменной, а другой записывает, чтобы избежать возможной проблемы с Cache Coherency.
+```java
+public class App
+{
+    public static void main( String[] args )
+    {
+        MyThread MyThread = new MyThread();
+        MyThread.start();
+
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+
+        MyThread.offThread();
+    }
+}
+
+class MyThread extends Thread {
+    private volatile boolean running = true;
+
+    @Override
+    public void run() {
+        while (running) {
+            System.out.println("Hello World");
+            try {
+                Thread.sleep(500); // закрывает поток на 0.5 секунд
+            } catch (InterruptedException e) { // для sleep
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void offThread() {
+        running = false;
+    }
+}
+```
+
+
 
 [к оглавлению](#Многопоточноть)
