@@ -4,6 +4,7 @@
   - [Что такое многопоточность?](#что-такое-многопоточность)
   - [Как открыть новый поток?](#как-открыть-новый-поток)
   - [Ключевое слово volatile](#ключевое-словое-volatile)
+  - [Ключевое слово synchronized](#ключевое-словое-synchronized-без-явного-указания)
 
 ## Что такое _многопоточность_?
 __Многопоточность__ - механизм, который помогает выполнять код || с другим. 
@@ -61,7 +62,7 @@ class Runner implements Runnable {
 [к оглавлению](#Многопоточноть)
 
 ## Ключевое слово volatile
-Применяется в том случае, если один из потоков записывает в переменную (main), а другой(ие) читает(ют) из переменной (myThread), чтобы избежать возможной проблемы с Cache Coherency.
+Применяется в том случае, если один из потоков записывает в переменную (main), а другой(ие) читает(ют) из переменной (myThread), чтобы избежать возможной проблемы с `Cache Coherency`.
 ```java
 public class App
 {
@@ -108,5 +109,100 @@ class MyThread extends Thread {
 
 ![ ](images/Multithreading/cache_coherency.png)
 
+[к оглавлению](#Многопоточноть)
+
+## Ключевое слово synchronized без явного указания
+Применяется в том случае, если один из потоков читает из переменной, а другие записывают в переменную. Если точнее, то решает проблему `Race Contidion`.
+
+Без явного указания мы синхронизируемся на объекте `this` (тут оно = new App()).
+
+Ниже, вывод 20.000 будет не стабилен, так как потоки не синхронизированы. Не атомарность операции `++` меняет значение k, потому что после смены потока может случится перезапись k в меньшую сторону, (к примеру, 101), когда другой потом на прошлой шаге записал туда значение явно большее (к примеру, 107), потому что он получил больше процессорного времени.
+```java
+public class App
+{
+    private int k;
+    public static void main( String[] args ) throws InterruptedException { // exception для .join в doWork()
+        App app = new App();
+        app.doWork();
+    }
+
+    public void doWork() throws InterruptedException { // exception для .join
+        Thread thread1 = new Thread(new Runnable() { // 1-й поток, который делвет +1 к переменной k 
+            public void run() {
+                for (int i = 0; i < 10000; i++) {
+                    k++; // k = k + 1 - не атомарная (делимая на части) операция
+                }
+            }
+        });
+
+        Thread thread2 = new Thread(new Runnable() { // 2-й поток, который делвет +1 к переменной k 
+            public void run() {
+                for (int i = 0; i < 10000; i++) {
+                    k++; // k = k + 1 - не атомарная (делимая на части) операция
+                }
+            }
+        });
+
+        thread1.start();
+        thread2.start();
+
+        thread1.join(); // .join говорит main о том, что ждем окончания 1-ого потока
+        thread2.join(); // ждем окончания 2-ого потока
+
+        System.out.println(k); // и только потом выводи в консоль значения переменной
+    }
+}
+```
+
+Исправленный код c использованием synchronized, который предотвращает одновременное исполнение инкремента. Пока один поток пользуется методом, другой ждет разрешения:
+```java
+public class App
+{
+    private int k;
+    public static void main( String[] args ) throws InterruptedException {
+        App app = new App();
+        app.doWork(); 
+    }
+
+    // выделили отдельный метод
+    // так как synchronized применяется исключительно с методами
+    // в отличие от volatile
+    public synchronized void increment() {
+        k++;
+    }
+
+    public void doWork() throws InterruptedException {
+        Thread thread1 = new Thread(new Runnable() {
+            public void run() {
+                for (int i = 0; i < 10000; i++) {
+                    increment();
+                }
+            }
+        });
+
+        Thread thread2 = new Thread(new Runnable() {
+            public void run() {
+                for (int i = 0; i < 10000; i++) {
+                    increment();
+                }
+            }
+        });
+
+        thread1.start();
+        thread2.start();
+
+        thread1.join();
+        thread2.join();
+
+        System.out.println(k);
+    }
+}
+```
+
+__Как устроено synchronized?__ 
+
+В Java к каждому созданному объекту присвается `сущность` (monitor lock - дает понять Java, что в данный момент поток взаимодействует с объектом или помогает получить доступ к полям/методам объекта), которая `в один момент времени может быть только у одного потока`. И synchronized как раз таки испольют данную особенность Java-объектов.
 
 [к оглавлению](#Многопоточноть)
+
+
