@@ -98,6 +98,8 @@ class MyThread extends Thread {
 }
 ```
 
+Проблема __Cache Coherency__:
+![ ](images/Multithreading/cache_coherency.png)
 
 
 [к оглавлению](#Многопоточноть)
