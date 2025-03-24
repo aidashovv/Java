@@ -38,3 +38,7 @@ public class MyRepository {...}
 
 
 [к оглавлению](#springcore)
+
+@RequiredArgs необходим для Spring + во всех переменных ставим final
+Любой Bean, который есть в Bean
+
