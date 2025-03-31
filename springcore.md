@@ -5,7 +5,7 @@
   - [Что такое Inversion of control?](#что-такое-inversion-of-control)
   - [Как реализовать Inversion of control?](#как-реализовать-inversion-of-control)
   - [Bean scope](#bean-scope)
-  - [Методы bean'ов](#методы-bean'ов)
+  - [Методы bean'ов](#методы-beanов)
 
 
 ## Что такое фреймворк?
