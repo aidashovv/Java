@@ -4,7 +4,8 @@
   - [Что такое фреймворк?](#что-такое-фреймворк)
   - [Что такое Inversion of control?](#что-такое-inversion-of-control)
   - [Как реализовать Inversion of control?](#как-реализовать-inversion-of-control)
-
+  - [Bean scope](#bean-scope)
+  - [Методы bean'ов](#методы-bean'ов)
 
 
 ## Что такое фреймворк?
@@ -41,4 +42,15 @@ public class MyRepository {...}
 
 @RequiredArgs необходим для Spring + во всех переменных ставим final
 Любой Bean, который есть в Bean
+
+## Bean scope
++ Singleton (стоит по default'у) - используется, когда наш bean stateless.
++ Prototype - каждый раз создаёт новый объект при вывозе `context.getBean()`.
+
+[к оглавлению](#springcore)
+
+## Методы bean'ов
+
+
+[к оглавлению](#springcore)
 
