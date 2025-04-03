@@ -59,6 +59,9 @@ hibernate.connection.password=0000
 hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 // ??? (пока что)
 hibernate.current_session_context_class=thread
+// позволяет проиницализизировать таблицы при 1 запуске
+// и далее обновляет таблицы
+hibernate.hbm2ddl.auto=update
 ```
 
 [к оглавлению](#Hibernate)
