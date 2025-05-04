@@ -2,9 +2,18 @@
 
 # JCF
   - [Что такое Java Collections Framework?](#что-такое-java-collections-framework)
+  - [ArrayList](#array-list)
 
 ## Что такое Java Collections Framework?
-__Hibernate__ - ORM (Object-Relational Mapping), которая автоматизирует отображение Java объектов в строки в таблице реаляционной БД. 
+__Java Collections Framework__ - набор классов и интерфейсов, где реализован функционал по хранению объектов.
 
 [к оглавлению](#JCF)
 
+## ArrayList
++ Реализует интерфейс List.
++ В качества параметра можно указать исключительно ссылочные типы. Примитивы (int, double и т.д.) указать нельзя.
+
+__Методы:__
+
+
+[к оглавлению](#JCF)
