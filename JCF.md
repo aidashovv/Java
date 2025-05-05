@@ -13,6 +13,8 @@
 ## Что такое Java Collections Framework?
 __Java Collections Framework__ - набор классов и интерфейсов, где реализован функционал по хранению объектов.
 
+![ ](images/Multithreading/hierarchy.png)
+
 [к оглавлению](#JCF)
 
 ## ArrayList
